@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
 
+// creating fun giphy project
+
 class App extends React.Component {
 
   handleTermChange(term) {
