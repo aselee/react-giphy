@@ -14,6 +14,10 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar
+          // setting a new property, onTermChange
+          // it becomes availabe with the child component via this.props.
+          // Using the onTermChange property to pass the handleTermChange() callback
+          // from our App our SearchBar.
           onTermChange={this.handleTermChange}
         />
       </div>
