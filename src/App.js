@@ -29,7 +29,7 @@ class App extends React.Component {
   // this method will accept the selected gif image as an argument
   openModal(gif) {
     this.setState({
-      modalIsOåpen: true,
+      modalIsOpen: true,
       selectedGif: gif
     });
   }
