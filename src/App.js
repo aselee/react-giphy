@@ -2,9 +2,12 @@ import React from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import GifList from './components/GifList';
+import GifModal from './components/GifModal';
 import request from 'superagent';
 
 // creating fun giphy project
+// Adding a modal with a third-party package section
+
 
 class App extends React.Component {
 
@@ -17,8 +20,26 @@ class App extends React.Component {
     super();
 
     this.state = {
-      gifs: []
-    }
+      gifs: [],       // an empty array
+      selectedGif: null, // single object
+      modalIsOpen: false // boolean
+    };
+  }
+
+  // this method will accept the selected gif image as an argument
+  openModal(gif) {
+    this.setState({
+      modalIsOåpen: true,
+      selectedGif: gif
+    });
+  }
+
+  // this method closes and sets it back to null
+  closeModal() {
+    this.setState({
+      modalIsOpen: false,
+      selectedGif: null
+    });
   }
 
   // using GiphyAPI to call within handleTermChange method,
@@ -54,7 +75,21 @@ class App extends React.Component {
           // from our App our SearchBar.
           onTermChange={this.handleTermChange}
         />
-        <GifList gifs={this.state.gifs} />
+        <GifList 
+          gifs={this.state.gifs}
+          onGifSelect={selectedGif => this.openModal(selectedGif)} // to pass into openModal method
+        />
+        <GifModal 
+        // Passing modalIsOpen and selectedGif objects from state
+        // Also, passing in closeModal method via prop; whenever our
+        // third-party Modal component calls onRequestClose, 
+        // such as when clicking outside of the modal or hitting the 
+        // "close" button, it will call our App component's closeModal() function.
+          modalIsOpen={this.state.modalIsOpen}
+          selectedGif={this.state.selectedGif} 
+          onRequestClose={ () => this.closeModal()}
+        />
+
       </div>
     );
   }

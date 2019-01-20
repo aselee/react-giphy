@@ -13,7 +13,10 @@ import GifItem from './GifItem';
 // The GifList only needs to worry about displaying the data.
 const GifList = (props) => {
   const gifItems = props.gifs.map((image) => {
-    return <GifItem key={image.id} gif={image} />
+    return <GifItem key={image.id} 
+                    gif={image} 
+                    onGifSelect={props.onGifSelect}
+            />
   });
 
   return (

@@ -4,6 +4,9 @@
 
 - npm i --save superagent
 
+- npm i --save react-modal
+
+
 SuperAgent is a small progressive client-side and Node.js HTTP request library, sporting many high-level HTTP client features.
 
 # https://github.com/Giphy/GiphyAPI

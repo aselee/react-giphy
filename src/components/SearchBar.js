@@ -34,7 +34,7 @@ class SearchBar extends React.Component {
   render () {
     return (
       <div className="search">
-        <input 
+        <input placeholder="Search for gifs!"
           // every time the input is updated,
           // React's onChange property automatically fires.
           onChange={event => this.onInputChange(event.target.value)} />
