@@ -1,33 +1,18 @@
 import React from 'react';
 
-// Creating a input field for SearchBar component.
+// simplifying SearchBar 
+// original code in SearchBar Draft file
 
 class SearchBar extends React.Component {
-  // The constructor() runs automatically when the class is initialized.
-  // Calling super() within that method lets us access this.state
-  // within the constructor, since our class is a subclass of React.Component
+  // no need for constructor,
+  // due to no longer needing to initialize the state.
 
-  constructor() {
-    super();
-    this.state = { term: '' }
-  }
-
-  // Telling React that every time it notices we've changed our input,
-  // it should fire an onChange event and pass teh value - our search term -
-  // to our onInputChange() class method.
-
-  // When you're initializing state in the contructor,
-  // you can set it directly with this.state = {}
-  // However, if you want to signal to React that the state has changed,
-  // so that it knows to re-render, you need to call this.setState() instead.
-  // this means you should never call this.state = {} outside of a class constructor.
-
-  // Where does this.props.onTermChange(term); come from
-  // Need a way to pass data from a child component (SearchBar) 
-  // to its parent (App), and in react, we can do that through props -- data
-  // or callbacks passed from a parent component. 
+  // App container is wired into Redux,
+  // and will not be needed this.setState() in onInputChange()
+  
+  // The App component is going to pass the REQUEST_GIFS action
+  // to the SearchBar; using the onINputChange function.
   onInputChange(term) {
-    this.setState({ term });
     this.props.onTermChange(term);
   }
   
@@ -44,9 +29,3 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
-
-// before ES2015
-
-// function(event) {
-//   this.onInputChange(event.target.value);
-// }

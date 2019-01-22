@@ -27,3 +27,5 @@ const GifsTemp = ( {gifs} ) => {
     </ul>
   );
 };
+
+export default GifsTemp;
