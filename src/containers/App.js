@@ -45,6 +45,12 @@ function mapStateToProps(state) {
 
 // Setting this.props.actions on the App by calling
 // Redux's bindActionCreators method.
+// bindActionCreators takes a single object whose values
+// are action creators (in this case, our Actions object
+// that was imported from src/actions/index.js) and
+// wraps every action creator in a dispatch call, 
+// so that they can be invoked within our container.
+// that is how the app is notified that there is a state change.
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(Actions, dispatch)
