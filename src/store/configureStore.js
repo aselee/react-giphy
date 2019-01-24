@@ -1,6 +1,8 @@
 // Redux store
 
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import ReduxPromise from 'redux-promise';
+
 import rootReducer from '../reducers';
 
 export default function configureStore (initialState) {
@@ -12,8 +14,11 @@ export default function configureStore (initialState) {
   const store = createStore(
     rootReducer,
     initialState,
+    compose(
+      applyMiddleware(ReduxPromise),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
     // adding redux dev tools chrome extension to access the store.
-    window.devToolsExension ? window.devToolsExtension() : undefined
   );
   
   if (module.hot) {
