@@ -1,5 +1,7 @@
 ## Fun React Giphy generator
 
+Practice using React/Node /Bootstrap/Firebase
+
 - npx create-react-app
 
 - npm i --save superagent
