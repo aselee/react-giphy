@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
 import GifsReducer from './gifs';
 
+import ModalReducer from './modal';
+
+
 // combining all of our reducers into the rootReducer
 // passing the main reducing function as a parameter
 // when creating the store.
@@ -12,7 +15,8 @@ import GifsReducer from './gifs';
 // or more accurately what is being returned by the reducer
 
 const rootReducer = combineReducers({
-  gifs: GifsReducer
+  gifs: GifsReducer,
+  modal: ModalReducer
 });
 
 export default rootReducer;

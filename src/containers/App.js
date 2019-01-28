@@ -9,6 +9,8 @@ import { bindActionCreators } from 'redux';
 // This will give the access to all of the action creators,
 // so that it can be hooked to our components.
 import * as Actions from '../actions';
+import GifList from '../components/GifList';
+import GifModal from '../components/GifModal';
 import SearchBar from '../components/SearchBar';
 import '../styles/App.css';
 
@@ -22,6 +24,16 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onTermChange={this.props.actions.requestGifs}/>
+        {/* adding onGifSelect prop to GifList and passing in the selectedGif
+        argument being sent all the way up to GifItem component.  */}
+        <GifList gifs={this.props.gifs} 
+          onGifSelect={ selectedGif => this.props.actions.openModal({selectedGif}) } 
+        />
+        {/* Adding GifModal with modalIsOpen and selectedGif when being passed through as props */}
+        <GifModal modalIsOpen={ this.props.modalIsOpen }
+          selectedGif={ this.props.selectedGif }
+          onRequestClose={ () => this.props.actions.closeModal() }
+        />
       </div>
     );
   }
@@ -36,7 +48,11 @@ class App extends React.Component {
 // in the App component.
 function mapStateToProps(state) {
   return {
-    gifs: state.gifs
+    gifs: state.gifs.data,
+    // modalIsOpen and selectedGif being added to App's props
+    // from Redux store via mapDispatchToProps.
+    modalIsOpen: state.modal.modalIsOpen,
+    selectedGif: state.modal.selectedGif
   };
 }
 

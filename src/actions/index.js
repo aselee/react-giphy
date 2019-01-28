@@ -1,5 +1,8 @@
 import request from 'superagent';
 
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+
 // Action Type:
 // In Redux, almost always expressed as a const in all caps,
 // so that it can be exported for use in other parts of the app(such as the reducers)
@@ -23,5 +26,22 @@ export function requestGifs(term = null) {
     type: REQUEST_GIFS,
     payload: data
     // term
+  }
+}
+
+
+// Adding OPEN_MODAL and CLOSE_MODAL with two action creators, openModal() and closeModal().
+// openModal() action creator takes a gif as an argument:
+// this will be the gif our modal will render.
+export function openModal(gif) {
+  return {
+    type: OPEN_MODAL,
+    gif
+  }
+}
+
+export function closeModal() {
+  return {
+    type: CLOSE_MODAL
   }
 }
