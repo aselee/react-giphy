@@ -1,5 +1,5 @@
 import React from 'react';
-import { ConnectedRouter } from 'react-router-redux';
+import { Router } from 'react-router';
 import { Route } from 'react-router-dom';
 import { history } from './../store/configureStore';
 
@@ -10,7 +10,7 @@ import Signup from '../containers/Signup';
 import Login from '../containers/Login';
 import Favorites from '../containers/Favorites';
 
-export default class App extends React.Component {
+class App extends React.Component {
   
   render() {
     return (
@@ -18,7 +18,7 @@ export default class App extends React.Component {
       // from react-router-redux and passing the history object.
       // ConnectedRouter based on the end of the app's URL.
       // For ex, url/favorites and uses it as a path to render the components.
-      <ConnectedRouter history={history}>
+      <Router history={history}>
         <div>
           {/* Header will be rendered in every page */}
           <Header />
@@ -32,8 +32,10 @@ export default class App extends React.Component {
             <Route path="/favorites" component={ Favorites }/>
           </div>
         </div>
-      </ConnectedRouter>
+      </Router>
     );
   }
 }
+
+export default App;
 
