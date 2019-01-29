@@ -15,7 +15,7 @@ import SearchBar from '../components/SearchBar';
 import '../styles/App.css';
 
 
-class App extends React.Component {
+class Home extends React.Component {
   // passing requstGifs action creator to SearchBar
   // via the onTermChange prop.
   // whenever the onInputChange method is fired by entering
@@ -74,7 +74,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 // mapDispatchToProps passes data from the container to the store.
 // It provides the ability for the container to tell the store

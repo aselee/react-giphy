@@ -2,10 +2,19 @@
 
 import { createStore, compose, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
-
 import rootReducer from '../reducers';
+// importing history package dependency from react-router
+import createHistory from 'history/createBrowserHistory';
+import {routerMiddleware} from 'react-router-redux';
 
-export default function configureStore (initialState) {
+
+export const history = createHistory();
+
+// exporting history object and removing default from configureStore() method,
+// since configureStore method is no longer being exported by default.
+// export default function configureStore (initialState) {
+
+export function configureStore(initialState) {
 
   // using redux's createStore function to create the store.
   // passing the store to the rootReducer,
@@ -15,7 +24,8 @@ export default function configureStore (initialState) {
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(ReduxPromise),
+      // added routerMiddleware
+      applyMiddleware(ReduxPromise, routerMiddleware(history)),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
     // adding redux dev tools chrome extension to access the store.

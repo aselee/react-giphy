@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import GifsReducer from './gifs';
-
 import ModalReducer from './modal';
+import { routerReducer } from 'react-router-redux';
 
 
 // combining all of our reducers into the rootReducer
@@ -16,7 +16,8 @@ import ModalReducer from './modal';
 
 const rootReducer = combineReducers({
   gifs: GifsReducer,
-  modal: ModalReducer
+  modal: ModalReducer,
+  router: routerReducer
 });
 
 export default rootReducer;
