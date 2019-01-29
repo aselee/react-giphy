@@ -10,6 +10,8 @@ Practice using React/Node /Bootstrap/Firebase
 
 - npm i --save redux-promise
 
+- npm i --save react-router-dom react-router-redux@next
+
 Redux-promise, a library that allows you to add a middle ware function to the store, and if it receives a promise as a paylod from an action, it will dispatch the resolved value of that promise.
 
 
