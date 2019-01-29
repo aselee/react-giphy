@@ -10,7 +10,9 @@ Practice using React/Node /Bootstrap/Firebase
 
 - npm i --save redux-promise
 
-- npm i --save react-router-dom react-router-redux@next
+- npm i --save react-router-redux
+
+- npm i --save react-router-dom
 
 Redux-promise, a library that allows you to add a middle ware function to the store, and if it receives a promise as a paylod from an action, it will dispatch the resolved value of that promise.
 
@@ -19,3 +21,9 @@ SuperAgent is a small progressive client-side and Node.js HTTP request library, 
 
 # https://github.com/Giphy/GiphyAPI
  - using GiphyAPI
+
+ # https://www.npmjs.com/package/react-router-redux
+  - ConnectedRouter is gone; now Router
+
+ # https://www.npmjs.com/package/react-router-dom
+
