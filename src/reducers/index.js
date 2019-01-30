@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import GifsReducer from './gifs';
 import ModalReducer from './modal';
 import { routerReducer } from 'react-router-redux';
-import { reducer as FormReducer} from 'redux-reform';
+import { reducer as FormReducer} from 'redux-form';
 
 
 // combining all of our reducers into the rootReducer
