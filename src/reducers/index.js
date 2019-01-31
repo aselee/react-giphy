@@ -3,6 +3,7 @@ import GifsReducer from './gifs';
 import ModalReducer from './modal';
 import { routerReducer } from 'react-router-redux';
 import { reducer as FormReducer} from 'redux-form';
+import AuthReducer from './auth';
 
 
 // combining all of our reducers into the rootReducer
@@ -16,6 +17,7 @@ import { reducer as FormReducer} from 'redux-form';
 // or more accurately what is being returned by the reducer
 
 const rootReducer = combineReducers({
+  auth: AuthReducer,
   form: FormReducer,
   gifs: GifsReducer,
   modal: ModalReducer,
