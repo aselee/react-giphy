@@ -7,6 +7,7 @@ const validate = values => {
 
   if (!values.email) {
     errors.email = 'Please enter an email';
+    
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid Email Address'
   }
@@ -62,10 +63,12 @@ available via redux-reform's this.props.handleSubmit. */}
               <label>Email Here</label>
               <Field 
                 name="email" 
-                component="input" 
+                // component="input" 
+                component={this.renderField}
                 className="form-control" 
                 type="text" 
-                placeholder="Email"
+                // placeholder="Email"
+                label="Email"
               />
             </fieldset>
 
@@ -73,10 +76,12 @@ available via redux-reform's this.props.handleSubmit. */}
               <label>Password Here</label>
               <Field 
                 name="password" 
-                component="input"
+                // component="input"
+                component={this.renderField}
                 className="form-control"
                 type="password"
-                placeholder="Password"
+                // placeholder="Password"
+                label="Password"
               />
             </fieldset>
 
