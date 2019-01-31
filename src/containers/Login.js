@@ -1,6 +1,22 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+// adding validation code
+const validate = values => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Please enter an email';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid Email Address'
+  }
+
+  if(!values.password) {
+    errors.password = "Please enter a password";
+  }
+
+  return errors;
+}
 
 // Boilerplate for login page
 class Login extends React.Component {
@@ -13,6 +29,18 @@ class Login extends React.Component {
   handleFormSubmit = (values) => {
     console.log(values);
   };
+
+  // Adding validation code
+  renderField = ({ input, label, type, meta: { touched, error }}) => (
+    <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
+      <label className="control-label">{label}</label>
+      <div>
+        <input {...input} placeholder={label} className="form-control" type={type} />
+        {touched && error && <div className="help-block">{error}</div>}
+      </div>
+    </fieldset>
+  );
+
 
   render() {
     return (
@@ -68,6 +96,8 @@ available via redux-reform's this.props.handleSubmit. */}
 // that has only one required argument: a unique name for the form.
 // This will be set as a key on the store object returned from the FormReducer
 export default reduxForm({
-  form: 'login'
+  form: 'login',
+  // adding validate to the reduxForm
+  validate
 })(Login);
 
