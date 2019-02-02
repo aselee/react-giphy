@@ -37,14 +37,15 @@ const PublicRoute = ({component: Component, authenticated, ...props}) => {
       {...props}
       render={(props) => authenticated === false
         ? <Component {...props} />
-        : <Redirect to='/favorites'/>}
+        : <Redirect to='/favorites' />}
       />
     );
-  }
+  };
 
 class App extends React.Component {
   
   render() {
+
     return (
       // wrapping all of the code in ConnectedRouter component 
       // from react-router-redux and passing the history object.

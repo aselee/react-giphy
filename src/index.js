@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from './store/configureStore';
 
 
+
 // creating store by calling the
 // configureStore() method that was set up in configureStore.js
 const store = configureStore();

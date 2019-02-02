@@ -27,7 +27,7 @@ class SearchBar extends React.Component {
   // to its parent (App), and in react, we can do that through props -- data
   // or callbacks passed from a parent component. 
   onInputChange(term) {
-    this.setState({ term });
+    this.({ term });
     this.props.onTermChange(term);
   }
   
