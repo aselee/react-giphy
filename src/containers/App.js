@@ -6,11 +6,11 @@ import { history } from '../store/configureStore';
 import { connect } from 'react-redux';
 
 // Routing all the containers
-import Header from './Header';
-import Home from './Home';
-import Signup from './Signup';
-import Login from './Login';
-import Favorites from './Favorites';
+import Header from '../containers/Header';
+import Home from '../containers/Home';
+import Signup from '../containers/Signup';
+import Login from '../containers/Login';
+import Favorites from '../containers/Favorites';
 
 
 
@@ -37,7 +37,7 @@ const PublicRoute = ({component: Component, authenticated, ...props}) => {
       {...props}
       render={(props) => authenticated === false
         ? <Component {...props} />
-        : <Redirect to='/favorites' />}
+        : <Redirect to= '/favorites '/>}
       />
     );
   };
