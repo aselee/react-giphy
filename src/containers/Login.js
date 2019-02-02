@@ -1,6 +1,11 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+// connecting actions
+import { connect } from 'react-redux';
+import * as Actions from '../actions';
+
+
 // adding validation code
 const validate = values => {
   const errors = {};
@@ -17,7 +22,7 @@ const validate = values => {
   }
 
   return errors;
-}
+};
 
 // Boilerplate for login page
 class Login extends React.Component {
@@ -28,8 +33,9 @@ class Login extends React.Component {
   // whatever callback is supplied, which is handleFormSubmit() method.
 
   handleFormSubmit = (values) => {
-    console.log(values);
-  };
+    // console.log(values);
+    this.props.signInUser(values);
+    }
 
   // Adding validation code
   renderField = ({ input, label, type, meta: { touched, error }}) => (
@@ -60,7 +66,7 @@ it and run validation first. */}
 individual inputs to the Redux Store. The values of the inputs are made 
 available via redux-reform's this.props.handleSubmit. */}
             <fieldset className="form-group">
-              <label>Email Here</label>
+              {/* <label>Email Here</label> */}
               <Field 
                 name="email" 
                 // component="input" 
@@ -73,7 +79,7 @@ available via redux-reform's this.props.handleSubmit. */}
             </fieldset>
 
             <fieldset className="form-group">
-              <label>Password Here</label>
+              {/* <label>Password Here</label> */}
               <Field 
                 name="password" 
                 // component="input"
@@ -92,17 +98,29 @@ available via redux-reform's this.props.handleSubmit. */}
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
+
+// using react-redux connect()() since the components now 
+// need to be connected to redux in order to have access
+// to our signInUser() action creator.
+export default connect(null, Actions)(reduxForm({
+  form: 'login',
+  validate
+})(Login));
+
+
+
+// BEFORE: 
 // using reduxForm()(), connects the form to Redux.
 // In the first set of parentheses, it takes a config object
 // that has only one required argument: a unique name for the form.
 // This will be set as a key on the store object returned from the FormReducer
-export default reduxForm({
-  form: 'login',
+// export default reduxForm({
+//   form: 'login',
   // adding validate to the reduxForm
-  validate
-})(Login);
+//   validate
+// })(Login);
 
