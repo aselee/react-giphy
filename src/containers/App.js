@@ -24,7 +24,7 @@ const PrivateRoute = ({component: Component, authenticated, ...props}) => {
       {...props}
       render={(props) => authenticated === true
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />} 
+        : <Redirect to={{pathname: '/Login', state: {from: props.location}}} />} 
       />
   );
 }
@@ -37,7 +37,7 @@ const PublicRoute = ({component: Component, authenticated, ...props}) => {
       {...props}
       render={(props) => authenticated === false
         ? <Component {...props} />
-        : <Redirect to= '/favorites '/>}
+        : <Redirect to='/Favorites'/>}
       />
     );
   };
