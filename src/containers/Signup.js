@@ -1,6 +1,12 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+// connecting actions
+// need to connect signInUser() action creator
+import { connect } from 'react-redux';
+import * as Actions from '../actions';
+
+
 
 // Creating sign up page with validiation code
 
@@ -36,7 +42,8 @@ const validate = values => {
 
 class Signup extends React.Component {
   handleFormSubmit = (values) => {
-    console.log(values);
+    // console.log(values);
+    this.props.signInUser(values);
   };
 
 // Difference between Login and Signup, is that there is a passwordConfirmation field.
@@ -122,16 +129,22 @@ it will display the error message. */
   }
 }
 
+export default connect(null, Actions)(reduxForm({
+  form: 'signup',
+  validate
+})(Signup));
+
 
 // validate function added as an argument to reduxForm
 // configuration object at the bottom of the file so 
 // that the information, along with the form name, will be passed
 // to the FormReducer.
 
-export default reduxForm({
-  form: 'signup',
-  validate
-}) (Signup);
+// Before:
+// export default reduxForm({
+//   form: 'signup',
+//   validate
+// }) (Signup);
 
 
 // Boilerplate code
