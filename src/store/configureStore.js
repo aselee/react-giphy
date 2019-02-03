@@ -6,6 +6,7 @@ import rootReducer from '../reducers';
 // importing history package dependency from react-router
 import createHistory from 'history/createBrowserHistory';
 import {routerMiddleware} from 'react-router-redux';
+import * as Actions from '../actions';
 
 // using redux-thunk
 import reduxThunk from 'redux-thunk';
@@ -42,6 +43,9 @@ export function configureStore(initialState) {
       store.replaceReducer(nextRootReducer);
     });
   }
+
+  // importing ACtions and dispatching the object
+  store.dispatch(Actions.verifyAuth());
 
   return store;
 }

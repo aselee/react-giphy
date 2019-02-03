@@ -137,9 +137,44 @@ export function signInUser(credentials) {
 //   }
 // }
 
+// exporting signOutUser function
 export function signOutUser() {
-  return {
-    type: SIGN_OUT_USER
+  return function (dispatch) {
+    Firebase.auth().signOut()
+      .then(() => {
+        dispatch({
+          type: SIGN_OUT_USER
+        })
+      });
+  }
+}
+
+// Before:
+// export function signOutUser() {
+//   return {
+//     type: SIGN_OUT_USER
+//   }
+// }
+
+// using reduxThunk to conditionally dispatch some actions.
+// If the user is signed in, Firebase.auth.onAuthStateChanged()
+// will return a valid user object, and we can dispatch our authUser()
+// action creator to update authenticated to true on the state. 
+// if Firebase.auth.onAuthStateChanged() returns null, it means 
+// that the Firebase auth info is no longer valid, so it will call signOutUser()
+// to lock the user out of the application until the user signs in again.
+// But if the page is refreshed, it still looks like the user is logged out.
+// Thus, we need to call verifyAuth() almost as soon as the app boots so
+// it can update the state accordingly. 
+export function verifyAuth() {
+  return function (dispatch) {
+    Firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        dispatch(authUser());
+      } else {
+        dispatch(signOutUser());
+      }
+    });
   }
 }
 
