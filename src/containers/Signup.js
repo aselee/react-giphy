@@ -43,7 +43,8 @@ const validate = values => {
 class Signup extends React.Component {
   handleFormSubmit = (values) => {
     // console.log(values);
-    this.props.signInUser(values);
+    // this.props.signInUser(values);
+    this.props.signUpUser(values);
   };
 
 // Difference between Login and Signup, is that there is a passwordConfirmation field.
@@ -86,15 +87,23 @@ it will display the error message. */
   // Bootstrap class of has-error on fieldset will be activated.
   // Also adding Bootstrap class control-label to the labels and help-block
   // to the actual error text. Now if there is an error on a form, red color will show.
-    renderField = ({ input, label, type, meta: { touched, error }}) => (
-      <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
-        <label className="control-label">{label}</label>
-        <div>
-          <input {...input} placeholder={label} className="form-control" type={type}/>
-          {touched && error && <div className="help-block">{error}</div>}
-        </div>
-      </fieldset>
-    );
+  renderField = ({ input, label, type, meta: { touched, error }}) => (
+    <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
+      <label className="control-label">{label}</label>
+      <div>
+        <input {...input} placeholder={label} className="form-control" type={type}/>
+        {touched && error && <div className="help-block">{error}</div>}
+      </div>
+    </fieldset>
+  );
+
+
+  renderAuthenticationError() {
+    if (this.props.authenticationError) {
+      return <div className="alert alert-danger">{this.props.authenticationError}</div>;
+    }
+    return <div></div>;
+  }
     
 
   render() {
@@ -102,6 +111,9 @@ it will display the error message. */
       <div className="container">
         <div className="col-md-6 col-md-offset-3">
           <h2 className="text-center">Sign up here</h2>
+
+          { this.renderAuthenticationError() }
+
           <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
             <Field 
               name="email" 
@@ -129,10 +141,21 @@ it will display the error message. */
   }
 }
 
-export default connect(null, Actions)(reduxForm({
+function mapStateToProps(state) {
+  return {
+    authenticationError: state.auth.error
+  }
+}
+
+export default connect(mapStateToProps, Actions)(reduxForm({
   form: 'signup',
   validate
 })(Signup));
+
+// export default connect(null, Actions)(reduxForm({
+//   form: 'signup',
+//   validate
+// })(Signup));
 
 
 // validate function added as an argument to reduxForm
