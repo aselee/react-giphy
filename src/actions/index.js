@@ -10,6 +10,8 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 // so that it can be exported for use in other parts of the app(such as the reducers)
 export const REQUEST_GIFS = 'REQUEST_GIFS';
 
+export const FETCH_FAVORITED_GIFS = 'FETCH_FAVORITED_GIFS';
+
 // Action types as constants, passing to our action creators
 // signInUser() and signOutUser() via required type property
 // export const SIGN_IN_USER = 'SIGN_IN_USER';
@@ -57,6 +59,42 @@ export function requestGifs(term = null) {
   }
 }
 
+export function favoriteGif({selectedGif}) {
+  const userUid = Firebase.auth().currentUser.uid;
+  const gifId = selectedGif.id;
+
+  return dispatch => Firebase.database().ref(userUid).update({
+    [gifId]: selectedGif
+  });
+}
+
+export function unfavoriteGif({selectedGif}) {
+  const userUid = Firebase.auth().currentUser.uid;
+  const gifId = selectedGif.id;
+
+  return dispatch => Firebase.database().ref(userUid).child(gifId).remove();
+}
+
+export function fetchFavoritedGifs() {
+  return function(dispatch) {
+    const userUid = Firebase.auth().currentUser.uid;
+
+    // Using Firebase's on method to pass our favorited gifs
+    // into the Redux store.
+    // on is a listener that fires when the initial data is stored
+    // at the specified location, which in this case, our child path
+    // with our user ID) and again every time the data changes.
+    // it passes a snapshot of this data through the callback,
+    // and then dispatching the value of this snapshot to our reducer.
+
+    Firebase.database().ref(userUid).on('value', snapshot => {
+      dispatch({
+        type: FETCH_FAVORITED_GIFS,
+        payload: snapshot.val()
+      })
+    });
+  }
+}
 
   // const data = request.get(`${API_URL}${term.replace(/\s/g, '+')}${API_KEY}`);
 
