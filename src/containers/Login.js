@@ -48,6 +48,13 @@ class Login extends React.Component {
     </fieldset>
   );
 
+  renderAuthenticationError() {
+    if (this.props.authenticationError) {
+      return <div className="alert alert-danger">{this.props.authenticationError}</div>;
+    }
+    return <div></div>;
+  }
+
 
   render() {
     return (
@@ -56,6 +63,9 @@ class Login extends React.Component {
           <h2 className="text-center">
             Log In Here
           </h2>
+
+          { this.renderAuthenticationError() }
+
 {/* handleSubmit(), is a redux-form method, made available via
 this.props by reduxForm()(), that we can attach to the form's onSubmit event handler.
 This lets redux-form know that the user is trying to submit the form so it can intercept
@@ -102,14 +112,26 @@ available via redux-reform's this.props.handleSubmit. */}
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    authenticationError: state.auth.error
+  }
+}
+
+export default connect(mapStateToProps, Actions)(reduxForm({
+  form: 'login',
+  validate
+})(Login));
+
+
 
 // using react-redux connect()() since the components now 
 // need to be connected to redux in order to have access
 // to our signInUser() action creator.
-export default connect(null, Actions)(reduxForm({
-  form: 'login',
-  validate
-})(Login));
+// export default connect(null, Actions)(reduxForm({
+//   form: 'login',
+//   validate
+// })(Login));
 
 
 
