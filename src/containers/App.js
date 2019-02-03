@@ -5,6 +5,14 @@ import { history } from '../store/configureStore';
 
 import { connect } from 'react-redux';
 
+
+// NOTE: 
+// React-giphy completed;
+// having issue with not seeing favorites.
+// Look into Firebase database.
+// Refactor code
+
+
 // Routing all the containers
 import Header from '../containers/Header';
 import Home from '../containers/Home';
