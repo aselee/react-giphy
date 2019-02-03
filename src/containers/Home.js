@@ -28,6 +28,9 @@ class Home extends React.Component {
         argument being sent all the way up to GifItem component.  */}
         <GifList gifs={this.props.gifs} 
           onGifSelect={ selectedGif => this.props.actions.openModal({selectedGif}) } 
+          onFavoriteSelect={ selectedGif => this.props.actions.favoriteGif({selectedGif}) }
+          onFavoriteDeslect={ selectedGif => this.props.actions.unfavoriteGif({selectedGif}) }
+          isAuthenticated={ this.props.authenticated }
         />
         {/* Adding GifModal with modalIsOpen and selectedGif when being passed through as props */}
         <GifModal modalIsOpen={ this.props.modalIsOpen }
@@ -48,6 +51,7 @@ class Home extends React.Component {
 // in the App component.
 function mapStateToProps(state) {
   return {
+    authenticated: state.auth.authenticated,
     gifs: state.gifs.data,
     // modalIsOpen and selectedGif being added to App's props
     // from Redux store via mapDispatchToProps.
