@@ -8,8 +8,10 @@ import GifModal from '../components/GifModal';
 import '../styles/App.css';
 
 class Favorites extends React.Component {
+
+  // using componentWillMount method to fetch favorite gifs
   componentWillMount() {
-    this.props.actoins.fetchFavoritedGifs();
+    this.props.actions.fetchFavoritedGifs();
   }
 
   render() {
@@ -21,6 +23,8 @@ class Favorites extends React.Component {
           onFavoriteSelect={ selectedGif => this.props.actions.favoriteGif({selectedGif}) }
           onFavoriteDeselect={ selectedGif => this.props.actions.unfavoriteGif({selectedGif}) }
           isAuthenticated={ this.props.authenticated }
+          // setting isFavorite as true, so that GifItems know
+          // that the inital state on all of the components should be favorited.
           isFavorite={true} 
         />
         <GifModal 
