@@ -19,6 +19,7 @@ import Favorites from '../containers/Favorites';
 // passed as an arguement or redirecting them to the '/login' or '/favorites' location.
 // PrivateRoutes are restricted to the authenticated users, and PublicRoutes are restricted to users who are not logged in.
 const PrivateRoute = ({component: Component, authenticated, ...props}) => {
+
   return (
     <Route
       {...props}
@@ -29,18 +30,25 @@ const PrivateRoute = ({component: Component, authenticated, ...props}) => {
   );
 }
 
+
 // Calling both the PublicRoute and PrivateRoute rather than just the vanilla Route. 
 // Passing through whether if the user has been authenticated from the store. 
-const PublicRoute = ({component: Component, authenticated, ...props}) => {
-  return (
-    <Route
-      {...props}
-      render={(props) => authenticated === false
-        ? <Component {...props} />
-        : <Redirect to='/Favorites'/>}
-      />
-    );
-  };
+
+// PublicRoute isnt working
+
+// const PublicRoute = ({component: Component, authenticated, ...props}) => {
+//   return (
+//     <Route
+//       {...props}
+//       render={(props) => authenticated === false
+//         ? <Component {...props} />
+//         : <Redirect to='/Favorites'/>}
+//       />
+//     );
+//   };
+
+//<PublicRoute authenticated={this.props.authenticated} path="/signup" component={ Signup } />
+//<PublicRoute authenticated={this.props.authenticated} path="/login" component={ Login } /> 
 
 class App extends React.Component {
   
@@ -63,8 +71,8 @@ class App extends React.Component {
             {/* <Route path="/signup" component={ Signup }/>
             <Route path="/login" component={ Login }/>
             <Route path="/favorites" component={ Favorites }/> */}
-            <PublicRoute authenticated={this.props.authenticated} path="/signup" component={ Signup } />
-            <PublicRoute authenticated={this.props.authenticated} path="/login" component={ Login } />
+            <Route authenticated={this.props.authenticated} path="/signup" component={ Signup } />
+            <Route authenticated={this.props.authenticated} path="/login" component={ Login } />
             <PrivateRoute authenticated={this.props.authenticated} path="/favorites" component={ Favorites } />
           </div>
         </div>

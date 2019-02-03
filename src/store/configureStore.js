@@ -7,6 +7,8 @@ import rootReducer from '../reducers';
 import createHistory from 'history/createBrowserHistory';
 import {routerMiddleware} from 'react-router-redux';
 
+// using redux-thunk
+import reduxThunk from 'redux-thunk';
 
 export const history = createHistory();
 
@@ -24,8 +26,10 @@ export function configureStore(initialState) {
     rootReducer,
     initialState,
     compose(
+      // using reduxThunk instead of redux promise
+      applyMiddleware(reduxThunk, routerMiddleware(history)),
       // added routerMiddleware
-      applyMiddleware(ReduxPromise, routerMiddleware(history)),
+      // applyMiddleware(ReduxPromise, routerMiddleware(history)),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
     // adding redux dev tools chrome extension to access the store.
