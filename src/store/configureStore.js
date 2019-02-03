@@ -1,7 +1,7 @@
 // Redux store
 
 import { createStore, compose, applyMiddleware } from 'redux';
-import ReduxPromise from 'redux-promise';
+// import ReduxPromise from 'redux-promise';
 import rootReducer from '../reducers';
 // importing history package dependency from react-router
 import createHistory from 'history/createBrowserHistory';
