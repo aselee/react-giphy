@@ -18,6 +18,8 @@ Practice using React/Node /Bootstrap/Firebase
 
 - npm i firebase
 
+- npm i redux-thunk
+
 Redux-promise, a library that allows you to add a middle ware function to the store, and if it receives a promise as a paylod from an action, it will dispatch the resolved value of that promise.
 
 
