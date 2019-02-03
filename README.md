@@ -22,6 +22,7 @@ Practice using React/Node /Bootstrap/Firebase
 
 Redux-promise, a library that allows you to add a middle ware function to the store, and if it receives a promise as a paylod from an action, it will dispatch the resolved value of that promise.
 
+Redux-thunk, able to control over redux's dispatch() method, which is responsible for sending every fired action to all of our reducers. This allows it to call actions from within action creators in an asynchronous way.
 
 SuperAgent is a small progressive client-side and Node.js HTTP request library, sporting many high-level HTTP client features.
 
