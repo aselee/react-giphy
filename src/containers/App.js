@@ -5,7 +5,7 @@ import { history } from '../store/configureStore';
 
 import { connect } from 'react-redux';
 
-// test note 123
+// testing one mroe time to make sure saved files are in reactgiphy repo
 // NOTE: 
 // React-giphy completed;
 // having issue with not seeing favorites.
