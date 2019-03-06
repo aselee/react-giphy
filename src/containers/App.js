@@ -5,7 +5,7 @@ import { history } from '../store/configureStore';
 
 import { connect } from 'react-redux';
 
-// test note
+// test note 123
 // NOTE: 
 // React-giphy completed;
 // having issue with not seeing favorites.

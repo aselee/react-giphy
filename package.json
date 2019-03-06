@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "firebase": "^5.8.2",
-    "gh-pages": "^2.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-modal": "^3.8.1",
@@ -19,7 +18,6 @@
     "superagent": "^4.1.0"
   },
   "scripts": {
-    "deploy": "gh-pages -d src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +43,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aselee/react-giphy/issues"
-  },
-  "homepage": "https://aselee.github.io/giphy-search/"
+  }
 }
