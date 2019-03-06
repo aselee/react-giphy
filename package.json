@@ -4,13 +4,14 @@
   "private": true,
   "dependencies": {
     "firebase": "^5.8.2",
+    "gh-pages": "^2.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-modal": "^3.8.1",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^5.0.0-alpha.9",
-    "react-scripts": "2.1.3",
+    "react-scripts": "^2.1.5",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-promise": "^0.6.0",
@@ -18,6 +19,7 @@
     "superagent": "^4.1.0"
   },
   "scripts": {
+    "deploy": "gh-pages -d src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -31,5 +33,18 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "Practice using React/Node /Bootstrap/Firebase",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aselee/react-giphy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aselee/react-giphy/issues"
+  },
+  "homepage": "https://aselee.github.io/giphy-search/"
 }
